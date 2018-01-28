@@ -1,4 +1,4 @@
-pollutantmean <- function (directory, pollutant, id)
+pollutantmean <- function (directory, pollutant, id = 1:332)
 {
   sum <- 0
   mean <- 0
@@ -39,7 +39,7 @@ pollutantmean <- function (directory, pollutant, id)
   mean
 }
 
-complete <- function (directory, id)
+complete <- function (directory, id = 1:332)
 {
     # initate an empty data frame
     complete_dataFrame <-data.frame( id = numeric (),  nobs = numeric())

@@ -15,7 +15,7 @@ pollutantmean <- function (directory, pollutant, id)
           id_str <- gsub(' ', '', id_str)
       } else if ( i <100)
       {
-          # you must enter directory with / in it
+          
           id_str <- c ("0",id_str) 
           id_str <- toString(id_str)  
           id_str <- gsub(',', '', id_str)
@@ -57,7 +57,7 @@ complete <- function (directory, id)
         id_str <- gsub(' ', '', id_str)
       } else if ( i <100)
       {
-        # you must enter directory with / in it
+      
         id_str <- c ("0",id_str) 
         id_str <- toString(id_str) 
         id_str <- gsub(',', '', id_str)
@@ -79,4 +79,46 @@ complete <- function (directory, id)
       counter <- counter +1
     }
     complete_dataFrame
+}
+
+corr <- function(directory, threshold = 0)
+{
+  # get all ids with the required threshold
+  new <- complete("specdata", 1:332 ) 
+  new2 <- new [which(new$nobs > threshold) , names(new) %in% c("id")]
+  # initialte an empty vector
+  vector <- 0
+  # get corrolation for each element of the found ids and increase it in the vector
+  counter <- 1
+  for (i in new2)
+  {
+    id_str <- toString(i)
+    # to get id value like written in the files 001 or 077 .. etc.
+    
+    if ( i < 10 ) 
+    {
+      id_str <- c ("00",id_str) 
+      id_str <- toString(id_str)  
+      id_str <- gsub(',', '', id_str)
+      id_str <- gsub(' ', '', id_str)
+    } else if ( i <100)
+    {
+      id_str <- c ("0",id_str) 
+      id_str <- toString(id_str) 
+      id_str <- gsub(',', '', id_str)
+      id_str <- gsub(' ', '', id_str)
+    }
+    # get file directory correct
+    file <- c (directory , id_str, ".csv")
+    file_str <- toString(file)
+    file_str <- sub(',', '/', file_str)
+    file_str <- gsub(',', '', file_str)
+    file_str <- gsub(' ', '', file_str)
+    # read file into data frame
+    file_data <- read.csv(file_str)
+    #print (file_data[1,4])
+    vector [counter] <- cor (file_data[[2]] , file_data[[3]], use = "complete.obs")
+    counter <- counter +1
+  }
+  vector
 }

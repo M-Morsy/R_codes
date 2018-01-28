@@ -87,7 +87,7 @@ corr <- function(directory, threshold = 0)
   new <- complete("specdata", 1:332 ) 
   new2 <- new [which(new$nobs > threshold) , names(new) %in% c("id")]
   # initialte an empty vector
-  vector <- 0
+   vector <- numeric()
   # get corrolation for each element of the found ids and increase it in the vector
   counter <- 1
   for (i in new2)

@@ -18,12 +18,12 @@ xxx <- list ( a = 1:4 , b = rnorm(20) , c = rnorm(3) , d = rnorm(7))
 sapply (xxx , mean) # returns a vector
 
 # apply:
-# To be used with arrays (matrix ffor example)
+# To be used with arrays (matrix ffor example) / also used with data frames 
 # apply (x , MARGIN , FUN , ...) 
 # x: array | MARGIN: Dimensions saved "apply the FUN on it" & collapse the other dimension(s)
 xxx <- matrix(rnorm(200), 20 , 10)
-apply ( xxx, 1 , mean) # mean applied on the 20 rows
-apply ( xxx, 2 , mean) # mean applied on the 10 coulmns
+apply ( xxx, 1 , mean) # mean applied on the 20 rows    "first dimension"
+apply ( xxx, 2 , mean) # mean applied on the 10 coulmns "second dimension"
 # Some apply alternatives (more optimized)
 rowSums(xxx)  # apply (xxx, 1, sum)
 rowMeans(xxx) # apply (xxx, 1, mean)

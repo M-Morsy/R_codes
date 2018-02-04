@@ -1,0 +1,20 @@
+# classes to represent Dates and Times
+# Date class
+# Date stored as the number of days since 1970 - 01 - 01
+# Date stored as the number of days since 1970 - 01 - 01
+
+xxxxx <- as.Date ("1970-01-01")
+unclass (xxxxx) # [1] 0
+unclass(as.Date("1970-01-02") # [1] 1 >> 1 day after 1970-01-01
+
+
+
+# POSIXct & POSIXlt classes
+# Time is stored as the number of seconds since 1970 - 01 - 01
+
+# POSIXct are standards in computer for timing
+# ct : integer  / lt : list "other information"
+
+# weekdays / months / quarters functions give info
+
+
